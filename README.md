@@ -67,6 +67,8 @@ Connect a **public Vercel Blob store** and supply `BLOB_READ_WRITE_TOKEN`. Uploa
 
 ## Production deployment — Vercel / Node.js
 
+Runtime PostgreSQL URLs default to `connection_limit=1&pool_timeout=20` unless those parameters are explicitly configured. The Prisma client is reused per process in both production and development. This limits each instance's pool; it does not cap the total connections across Vercel instances. For sustained concurrency, use the database provider's shared pooler. On Aiven, use the actual PgBouncer connection URI from Connect → Connection pools if your plan supports it; do not guess the pool port or database name. Use a direct connection for migrations. An already exhausted database may need idle clients closed before a new deployment can connect. Do not disconnect Prisma after each request or hide failed database reads with seed content, which could expose unpublished pages.
+
 The selected target is **Vercel**, explicitly supported by the brief. This application uses a Node.js runtime and Prisma’s PostgreSQL client; it is **not** packaged as a Cloudflare Worker. A Worker deployment needs a tested compatible adapter, HTTP-compatible database driver and storage configuration. A static export would lose the CMS, authentication and enquiry APIs.
 
 1. Import this directory as a Next.js project in Vercel.
