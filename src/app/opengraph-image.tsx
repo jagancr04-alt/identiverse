@@ -1,0 +1,4 @@
+import { ImageResponse } from "next/og";
+export const alt = "identiVerse — Identity engineered. Trust enabled.";
+export const size = { width: 1200, height: 630 }; export const contentType = "image/png";
+export default function Image() { return new ImageResponse(<div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", height: "100%", background: "#071b34", color: "white", padding: "70px 80px" }}><div style={{ display: "flex", fontSize: 38, color: "#67d5e5" }}>identiVerse</div><div style={{ display: "flex", flexDirection: "column", fontSize: 66, letterSpacing: -3, lineHeight: 1.1 }}><span>Identity is our expertise.</span><span style={{ color: "#67d5e5" }}>Security is our foundation.</span></div><div style={{ display: "flex", color: "#9eafc4", fontSize: 19 }}>IAM ARCHITECTURE · ENGINEERING · INTEGRATION · MANAGED SUPPORT</div></div>, size); }
