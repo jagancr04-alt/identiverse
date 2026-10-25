@@ -9,8 +9,8 @@ export const settingsSchema = z.object({
 export const inquirySchema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(100),
   email: z.email("Enter a valid work email").max(254),
-  company: z.string().trim().min(2, "Enter your company").max(150),
-  service: z.string().trim().min(2).max(100),
+  company: z.string().trim().max(150),
+  service: z.string().trim().min(2, "Choose a service").max(100),
   message: z.string().trim().min(20, "Please add at least 20 characters").max(5000),
   consent: z.literal(true, { error: "Please agree before sending" }),
   website: z.string().max(0), startedAt: z.number()
@@ -22,5 +22,6 @@ export const contentSchema = z.object({
   capabilities: z.array(z.string().min(1).max(300)).min(1).max(30), challenges: z.array(z.string().max(500)).max(15),
   outcomes: z.array(z.string().max(500)).max(15), platforms: z.array(z.string().max(100)).max(30),
   faqs: z.array(z.object({ q: z.string().min(1).max(200), a: z.string().min(1).max(1500) })).max(20),
+  order: z.number().int().min(0).max(9999).optional(), scope: z.string().max(3000).optional(), deliverables: z.array(z.string().max(1000)).max(20).optional(), dependencies: z.string().max(3000).optional(), related: z.array(z.string().regex(/^(services|technologies|resources|solutions)\/[a-z0-9-]+$/)).max(10).optional(),
   body: z.string().max(100000).optional(), logoUrl: imageUrl.optional(), published: z.boolean()
 }).refine(v => v.slug.startsWith(v.group + "/"), "Slug must match the selected section");

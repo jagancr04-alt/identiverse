@@ -1,6 +1,9 @@
+import { serviceDetail } from "./service-details";
+import { platformDetail } from "./platform-details";
 export type ContentPage = {
   slug: string; group: string; title: string; eyebrow: string; description: string;
   capabilities: string[]; challenges: string[]; outcomes: string[]; platforms: string[];
+  order?: number; scope?: string; deliverables?: string[]; dependencies?: string; related?: string[];
   faqs: { q: string; a: string }[]; body?: string; logoUrl?: string;
 };
 export const platformNames = ["IBM Security", "Okta", "Microsoft Entra", "Keycloak", "Ping Identity", "ForgeRock", "Auth0", "SailPoint", "Saviynt", "CyberArk"];
@@ -26,7 +29,7 @@ export const services: ContentPage[] = [
   page("services", "privileged-access", "Privileged Access Management", "Reduce standing privilege and make sensitive access more controlled and accountable.", ["Privileged account discovery", "Credential vaulting and rotation", "Just-in-time access design", "Session control and monitoring integration", "Break-glass and service account procedures"]),
   page("services", "iam-modernization", "IAM Modernization", "Modernize identity incrementally, with a migration plan that accounts for applications, users and operations.", ["Legacy access platform assessments", "Cloud and hybrid migration", "Authentication protocol modernization", "Parallel run, pilot and rollback planning", "Directory and identity data consolidation"]),
   page("services", "compliance-audit", "IAM Compliance & Audit Readiness", "Translate applicable control requirements into identity configurations and usable audit evidence.", ["Identity control gap assessments", "Access-control mapping", "Least-privilege and review workflows", "Authentication and lifecycle evidence", "Audit logging and retention design"], { outcomes: ["Traceable mappings from selected requirements to implemented controls.", "Repeatable evidence collection and documented control owners.", "A prioritized remediation roadmap. IAM supports a compliance program; it does not by itself guarantee compliance."] })
-];
+].map(serviceDetail);
 export const solutions = [
   ["workforce-iam", "Workforce IAM", "Connect employees and contractors to the tools they need, with consistent access policies.", "Workforce SSO|MFA and conditional access|HR-driven provisioning|Joiner, mover and leaver automation|Access reviews"],
   ["customer-iam", "Customer IAM", "Create secure registration and authentication journeys for customer-facing applications.", "Registration and account recovery|Customer directories|Consent integration|Federation and account linking|API access design"],
@@ -49,7 +52,7 @@ export const technologies = [
   ["sailpoint", "SailPoint", "Identity governance|Lifecycle provisioning|Application connectors|Access certifications|Role and entitlement modeling"],
   ["saviynt", "Saviynt", "Identity governance|Access request workflows|Application onboarding|Access reviews|Segregation of duties"],
   ["cyberark", "CyberArk", "Privileged access architecture|Credential vaulting|Account onboarding|Rotation workflows|Session controls"]
-].map(([slug, title, caps]) => page("technologies", slug, title, `Architecture, implementation and hands-on integration for ${title}. Plan a supportable platform, engineer the required extensions and take changes through a controlled production rollout.`, caps.split("|"), { challenges: ["Platform configurations that have grown without a shared architecture.", "Complex application dependencies and custom integration requirements.", "Migration and support needs that extend beyond the initial deployment."], outcomes: ["An architecture aligned with your applications and operational constraints.", "Version-controlled configurations, customization and integration assets.", "Troubleshooting runbooks, migration plans and scoped ongoing support."], platforms: [title] }));
+].map(([slug, title, caps]) => page("technologies", slug, title, `Architecture, implementation and hands-on integration for ${title}. Plan a supportable platform, engineer the required extensions and take changes through a controlled production rollout.`, caps.split("|"), { challenges: ["Platform configurations that have grown without a shared architecture.", "Complex application dependencies and custom integration requirements.", "Migration and support needs that extend beyond the initial deployment."], outcomes: ["An architecture aligned with your applications and operational constraints.", "Version-controlled configurations, customization and integration assets.", "Troubleshooting runbooks, migration plans and scoped ongoing support."], platforms: [title] })).map(platformDetail);
 export const industries = [
   ["healthcare", "Healthcare", "Patient and workforce identity across a complex care ecosystem.", "Healthcare workforce SSO|EMR and EHR integration|Patient portal CIAM|MFA and emergency access|Audit logging|Healthcare identity lifecycle management", "HIPAA / HITECH, GDPR where applicable, and relevant UAE healthcare privacy and security requirements"],
   ["banking", "Banking & Financial Services", "Govern sensitive access across employees, customers and third parties.", "Strong customer and workforce authentication|Privileged access management|Segregation of duties|Access governance|Third-party access|Transaction-aware authentication", "PCI DSS, DORA, GLBA, FFIEC guidance, applicable RBI requirements and relevant UAE financial regulations"],
@@ -92,7 +95,7 @@ export const groupDescriptions: Record<string, { title: string; description: str
 };
 export const defaultSettings = {
   name: "identiVerse", tagline: "Identity engineered. Trust enabled.", location: "Bangalore, India", email: "", phone: "", linkedin: "", logoUrl: "",
-  heroTitle: "Identity is our expertise.\nSecurity is our foundation.",
-  heroDescription: "We architect, engineer, integrate and manage enterprise identity solutions that enable secure, seamless and scalable access across your digital ecosystem."
+  heroTitle: "IAM consulting.\nEngineering that connects.",
+  heroDescription: "IAM consulting, custom engineering, implementation and managed support for the platforms and applications your business depends on."
 };
 export type SiteSettings = typeof defaultSettings;

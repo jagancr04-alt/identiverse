@@ -5,7 +5,7 @@ for (const path of checks) {
   const response = await fetch(base + path);
   assert.equal(response.status, 200, `${path}: ${response.status}`);
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
-  if (path === "/") { const text = await response.text(); assert.ok(text.includes("identi")); assert.ok(text.includes("Bangalore, India")); assert.ok(text.includes("Identity is our expertise.")); }
+  if (path === "/") { const text = await response.text(); assert.ok(text.includes("identi")); assert.ok(text.includes("Bangalore, India")); assert.ok(text.includes("Discuss your IAM project")); }
   console.log(`PASS ${path}`);
 }
 const unknown = await fetch(base + "/this-route-does-not-exist");

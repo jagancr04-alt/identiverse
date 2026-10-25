@@ -1,6 +1,6 @@
 import type { ContentPage } from "@/lib/catalog";
 export function DeliverySteps({ page }: { page: ContentPage }) {
-  if (!["services", "technologies"].includes(page.group)) return null;
+  if (page.scope || !["services", "technologies"].includes(page.group)) return null;
   const cases: Record<string, string[]> = {
     "services/iam-architecture": ["Plan a hybrid identity architecture after a cloud adoption or business change.", "Assess an existing federation environment and document resilience improvements.", "Define a platform selection and application migration roadmap."],
     "services/iam-development": ["Integrate an application that needs custom claims or a nonstandard identity source.", "Build a Keycloak authenticator or IBM InfoMap flow around a defined user journey.", "Automate lifecycle actions through SCIM, Okta Workflows or Microsoft Graph."],

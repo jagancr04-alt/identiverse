@@ -1,0 +1,59 @@
+﻿import type { ContentPage } from "./catalog";
+type Detail = Pick<ContentPage, "description" | "capabilities" | "challenges" | "scope" | "deliverables" | "dependencies" | "related" | "faqs">;
+const details: Record<string, Detail> = {
+  "ibm-security": {
+    description: "Hands-on IBM Verify Access engineering across ISVA / ISAM, WebSEAL, InfoMap and federation. Extend authentication journeys, resolve access failures and plan controlled platform upgrades.",
+    capabilities: ["InfoMap JavaScript and authentication policy orchestration", "WebSEAL junctions, reverse proxy configuration and session handling", "SAML / OIDC federation and attribute mapping rules", "Custom authentication and external identity-source integration", "LDAP schema, search filters and identity lookup troubleshooting", "ISAM / ISVA upgrade assessment, fix packs and regression testing"],
+    challenges: ["Authentication chains fail at the boundary between WebSEAL, policy and directory lookup.", "Custom mapping rules behave differently after a platform upgrade.", "Legacy applications depend on headers, junctions or session behavior that must survive migration."],
+    scope: "Review one authentication journey or federation trust, trace its dependencies and agree a bounded implementation or troubleshooting scope. Upgrade work starts with a version and customization inventory.",
+    deliverables: ["Authentication flow and trust-boundary diagrams", "Version-controlled InfoMap / mapping rules and configuration changes", "Positive, negative and session regression test cases", "Upgrade or release runbook with rollback conditions"],
+    dependencies: "Requires supported product versions, access to a non-production environment, sanitized traces and directory / application owners. Licensing, IBM product support and infrastructure changes remain separately scoped.",
+    related: ["services/iam-development", "services/sso-federation", "resources/saml-oidc"],
+    faqs: [{ q: "Can an existing InfoMap flow be retained during an upgrade?", a: "First inventory its runtime dependencies, custom libraries, mapping rules and policy bindings. Test those against the target version before deciding which components can be retained." }, { q: "What helps diagnose a WebSEAL sign-in failure?", a: "A reproducible request, timestamps, sanitized proxy and federation traces, junction configuration and the relevant policy / LDAP lookup path. Never send credentials or live tokens through the enquiry form." }]
+  },
+  okta: {
+    description: "Okta Workforce Identity integration for SAML / OIDC applications, SCIM provisioning and lifecycle automation. Plan Google Workspace domain changes around user matching, federation and recovery.",
+    capabilities: ["Workforce Identity application onboarding with SAML and OIDC", "SCIM attribute mappings, matching rules and deprovisioning behavior", "Okta Workflows with retries, exception paths and operational ownership", "Google Workspace primary-domain and username migration planning", "Joiner, mover and leaver lifecycle automation", "MFA enrollment, sign-on policy and recovery validation"],
+    challenges: ["A domain rebrand changes usernames while accounts and application ownership must remain aligned.", "Provisioning creates duplicate users or updates the wrong downstream attribute.", "Lifecycle workflows have no clear retry, reconciliation or exception process."],
+    scope: "Map the source of truth and downstream dependencies for a defined set of applications or a Workspace domain migration. Pilot user matching, sign-in and provisioning before a staged rollout.",
+    deliverables: ["Application and identity-attribute dependency inventory", "SAML / OIDC and SCIM mapping specifications", "Workflow implementation and exception-handling tests", "Migration sequencing, reconciliation checks and recovery runbook"],
+    dependencies: "Okta product entitlements, Google Workspace administrative access and domain verification must be confirmed. Mail, DNS and collaboration-data migrations require separate ownership; an identity change alone does not migrate that data.",
+    related: ["services/iam-implementation", "solutions/lifecycle-automation", "resources/identity-lifecycle"],
+    faqs: [{ q: "Does changing the Okta username rename a Google Workspace account?", a: "That depends on the provisioning configuration, authoritative source and attribute mapping. Review matching and update behavior in a pilot; do not assume an application login update is a complete domain migration." }, { q: "How do you avoid lifecycle automation leaving users behind?", a: "Agree reconciliation checks, workflow retry behavior, failure notifications and manual exception ownership. Test suspension, reactivation and deletion separately." }]
+  },
+  "microsoft-entra": {
+    description: "Microsoft Entra ID engineering for enterprise applications, B2B federation, Conditional Access and MFA. Automate repeatable identity operations with Microsoft Graph and controlled permissions.",
+    capabilities: ["Enterprise application SAML / OIDC integration and claims mapping", "B2B collaboration and cross-tenant federation review", "Conditional Access policy design and report-only evaluation", "MFA enrollment, recovery and emergency-access procedures", "Microsoft Graph lifecycle and application-management automation", "Service principal permissions, consent and certificate rotation"],
+    challenges: ["Policy interactions block a user population or leave an unintended exclusion.", "Partner access spans tenants with different trust and lifecycle settings.", "Automation relies on broad permissions or an unmanaged application credential."],
+    scope: "Assess a defined application portfolio, external-user journey or policy set. Validate automation permissions and pilot policy changes against representative users and recovery paths.",
+    deliverables: ["Application claims and external-trust configuration record", "Conditional Access policy matrix and pilot evidence", "Graph automation with permission inventory and error handling", "Credential rotation and emergency-access runbooks"],
+    dependencies: "Capabilities depend on Entra licensing, tenant configuration, device signals and consent permissions. Tenant-wide policy rollout requires customer approval and a tested emergency-access route.",
+    related: ["services/mfa-passwordless", "services/iam-development", "solutions/b2b-federation"],
+    faqs: [{ q: "Can Conditional Access be tested before enforcement?", a: "Where supported, report-only evaluation and a scoped pilot help assess impact. Review policy interactions and emergency access before enforcement; report-only results do not replace end-to-end tests." }, { q: "What permissions does Graph automation require?", a: "Permissions depend on the exact operation and whether access is delegated or application-based. Document each permission, seek the minimum necessary consent and plan credential ownership and rotation." }]
+  },
+  keycloak: {
+    description: "Keycloak custom development for Java authenticators and SPIs, identity brokering, FTL themes and external identity integration. Keep extensions testable and compatible with your upgrade path.",
+    capabilities: ["Java Authenticator SPI implementation and authentication flow bindings", "External identity-provider and API integrations", "Identity brokering, first-login flows and account linking", "FTL login themes with accessible error and recovery states", "User storage federation and migration strategy", "SAML / OIDC clients, claims and session regression testing"],
+    challenges: ["A bespoke authentication requirement cannot be represented by built-in executions.", "Brokered users need safe matching and explicit account-linking rules.", "Custom extensions or themes break after a Keycloak version change."],
+    scope: "Define one user journey, SPI contract or migration cohort. Implement against an agreed Keycloak version with explicit failure, timeout and recovery behavior.",
+    deliverables: ["Java source, build configuration and versioned extension artifact", "Realm flow bindings and deployment instructions", "FTL theme assets and accessibility checks", "Integration tests and version compatibility / migration notes"],
+    dependencies: "A representative test realm, external-system contract and target Java / Keycloak versions are required. Credential migration depends on access to compatible password hashes or a separately approved reset / migration flow.",
+    related: ["services/iam-development", "services/ciam", "resources/saml-oidc"],
+    faqs: [{ q: "Will a custom SPI work across Keycloak versions?", a: "Compatibility must be checked against the target release. Keep the extension build versioned, review changed APIs and run authentication regression tests before upgrading." }, { q: "Can existing users migrate without resetting passwords?", a: "Only when the source credential format and migration approach are compatible and permitted. Otherwise plan a reset, federation or staged migration flow with the source-system owner." }]
+  },
+  auth0: {
+    description: "Auth0 customer identity integration using Actions, social login, organizations and account linking. Design migration and tenant boundaries around explicit user journeys and authorization rules.",
+    capabilities: ["Actions for claims enrichment and external-system calls", "Social and enterprise connection integration", "Explicit, verified account-linking journeys", "Organizations, membership and B2B sign-in context", "User migration and staged connection cutover", "OIDC application integration and API audience validation"],
+    challenges: ["Users acquire separate identities through social and enterprise connections.", "B2B membership and application permissions are incorrectly treated as equivalent.", "Login extensibility depends on a slow or unreliable external API."],
+    scope: "Map a customer or B2B sign-in journey, then implement the relevant Actions, connection configuration and migration checks in a non-production tenant.",
+    deliverables: ["Journey and organization-boundary design", "Version-controlled Actions with timeout and failure handling", "Account-linking verification and negative tests", "User migration plan and cutover / recovery checklist"],
+    dependencies: "Auth0 plan limits, external API availability and source-user export permissions must be established. Account linking requires proof of control; matching email addresses alone is not sufficient evidence.",
+    related: ["services/ciam", "services/iam-development", "solutions/customer-iam"],
+    faqs: [{ q: "Should matching email addresses trigger automatic account linking?", a: "No. Establish control of both identities through an explicit linking journey. Review verification, session freshness and the consequences for application authorization." }, { q: "What happens when an Action dependency is unavailable?", a: "Specify timeouts and whether each failure must deny access or allow a reduced journey. Test rate limits, retries and recovery without exposing tokens or personal data in logs." }]
+  }
+};
+export function platformDetail(page: ContentPage): ContentPage {
+  const detail = details[page.slug.split("/")[1]];
+  if (!detail) return { ...page, description: `Assess ${page.title} requirements, integration boundaries and delivery dependencies before committing an implementation scope. Product-specific delivery capability is confirmed during discovery.`, scope: `A bounded ${page.title} discovery and integration assessment; implementation scope is confirmed after the product and environment review.`, dependencies: "Product licensing, available specialist capability and customer support responsibilities must be confirmed before delivery is agreed." };
+  return { ...page, ...detail, outcomes: detail.deliverables || page.outcomes };
+}
