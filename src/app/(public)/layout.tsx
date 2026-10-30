@@ -1,3 +1,4 @@
+import "./corporate.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { getPages, getSettings } from "@/lib/content";
