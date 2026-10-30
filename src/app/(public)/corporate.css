@@ -31,3 +31,74 @@
 .company-site .service-card p{font-size:16px;line-height:1.75;margin-bottom:28px}
 .company-site .service-card .card-link{margin-top:auto;padding-top:12px}
 @media(max-width:700px){.company-site .home-about-grid{grid-template-columns:1fr;gap:28px}.company-site .service-grid{grid-template-columns:1fr;gap:18px}.company-site .service-card,.company-site .service-card.featured{padding:26px;min-height:260px}.company-site .home-about-copy p{font-size:16px}}
+
+
+/* Editorial refinement: restrained typography, rhythm and accessible motion. */
+.company-site {
+  --ink: #20232b;
+  --muted: #555b69;
+  --line: #e2e1e8;
+  --accent: #6651a7;
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.company-site .container { max-width: 1240px; }
+.company-site h1, .company-site h2, .company-site h3 { text-wrap: balance; }
+.company-site .site-header { backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.company-site .nav-link, .company-site .arrow-link { transition: color .2s ease; }
+.company-site a:focus-visible, .company-site button:focus-visible {
+  outline: 3px solid #6e5bb6;
+  outline-offset: 4px;
+}
+.company-site .hero {
+  background: radial-gradient(ellipse 65% 85% at 9% 12%, #e7ecfc 0%, transparent 80%),
+              radial-gradient(ellipse 58% 80% at 92% 8%, #eee4f8 0%, transparent 78%), #fcfcfe;
+}
+.company-site .hero-main { padding-block: clamp(84px, 10vw, 148px); border-inline: 0; }
+.company-site .hero-kicker { letter-spacing: .16em; border-color: #dedbe9; box-shadow: none; }
+.company-site .hero h1 { max-width: 1040px; letter-spacing: -.047em; line-height: 1.06; }
+.company-site .hero-copy > p { max-width: 660px; line-height: 1.65; color: var(--muted); }
+.company-site .hero-actions { gap: 12px; }
+.company-site .hero-actions .button { min-width: 208px; }
+.company-site .button { transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+@media (hover:hover) {
+  .company-site .button:hover { transform: translateY(-2px); }
+}
+.company-site .home-about { padding-block: clamp(80px, 9vw, 140px); }
+.company-site .home-about-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; }
+.company-site .home-about h2 { font-size: clamp(38px, 4.4vw, 62px); letter-spacing: -.035em; }
+.company-site .home-about-copy { max-width: 490px; }
+.company-site .home-about-copy p { line-height: 1.75; }
+.company-site .services-section { background: #fbfafc; }
+.company-site .service-grid { gap: 16px; }
+.company-site .service-card, .company-site .service-card.featured {
+  min-height: 305px;
+  border-radius: 12px;
+  padding: clamp(26px, 3vw, 42px);
+  transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+.company-site .service-card:nth-child(even) { background: #f6f3fa; }
+.company-site .service-card:hover, .company-site .service-card.featured:hover {
+  background: #fff;
+  border-color: #a99dc7;
+  box-shadow: 0 18px 45px #322b4a0b;
+}
+.company-site .service-card h3 { font-size: clamp(25px, 2.5vw, 34px); letter-spacing: -.02em; }
+.company-site .methodology-section { background: #eeedf5; }
+.company-site .consultation-cta { background: #e6def2; }
+@media (max-width: 700px) {
+  .company-site .hero-main { padding: 70px 0 82px; }
+  .company-site .hero h1 { font-size: clamp(38px, 9vw, 58px); letter-spacing: -.035em; }
+  .company-site .hero-copy > p { font-size: 16px; line-height: 1.7; }
+  .company-site .home-about { padding-block: 76px; }
+  .company-site .home-about-grid { grid-template-columns: 1fr; }
+  .company-site .service-card, .company-site .service-card.featured { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .company-site *, .company-site *::before, .company-site *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
