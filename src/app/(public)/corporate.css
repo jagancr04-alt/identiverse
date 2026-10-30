@@ -102,3 +102,34 @@
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Distinctive 2026 editorial homepage redesign */
+.company-site .identiverse-hero { background:#f4f1f7; border-bottom:1px solid #d9d2e2; }
+.company-site .identiverse-hero-layout { display:grid; grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr); align-items:stretch; min-height:690px; gap:clamp(24px,4vw,70px); padding-block:90px; }
+.company-site .identiverse-hero-copy { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-width:0; }
+.company-site .identiverse-hero .hero-kicker { margin-bottom:34px; background:transparent; border:0; padding:0; box-shadow:none; font-size:11px; }
+.company-site .identiverse-hero h1 { text-align:left; font-size:clamp(58px,6.3vw,104px); line-height:.99; letter-spacing:-.065em; margin:0 0 30px; max-width:none; }
+.company-site .identiverse-hero h1 em { color:#7152a6; font-weight:400; }
+.company-site .hero-period { color:#9b82bc; }
+.company-site .identiverse-hero-copy > p { margin:0 0 32px; max-width:500px; font-size:18px; line-height:1.65; text-align:left; }
+.company-site .identiverse-hero .hero-actions { justify-content:flex-start; width:auto; margin:0; gap:26px; }
+.company-site .identiverse-hero .hero-actions .button { min-width:0; border-radius:6px; padding:17px 23px; gap:14px; }
+.company-site .hero-text-link { display:inline-flex; gap:10px; align-items:center; font-weight:600; font-size:14px; border-bottom:1px solid #27242b; padding-bottom:7px; }
+.company-site .hero-proof { display:flex; flex-wrap:wrap; gap:12px 22px; margin-top:65px; color:#656071; font-size:10px; font-weight:700; letter-spacing:.12em; }
+.company-site .identity-art { position:relative; min-height:510px; background:#292438; overflow:hidden; border-radius:3px; isolation:isolate; color:#f5eefa; }
+.company-site .identity-art-grid { position:absolute; inset:0; opacity:.22; background-image:linear-gradient(#b7a5cc33 1px,transparent 1px),linear-gradient(90deg,#b7a5cc33 1px,transparent 1px); background-size:38px 38px; mask-image:radial-gradient(circle at center,#000,transparent 76%); }
+.company-site .identity-orbit { position:absolute; border:1px solid #bca9d15c; border-radius:50%; width:75%; aspect-ratio:1; top:46%; left:50%; transform:translate(-50%,-50%); }
+.company-site .orbit-two { width:51%; border-style:dashed; opacity:.75; }
+.company-site .identity-core { position:absolute; top:46%; left:50%; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; width:190px; aspect-ratio:1; border:1px solid #9e86bb; border-radius:50%; background:#514065; box-shadow:0 0 0 15px #b6a0c50c,0 0 75px #a58ac445; }
+.company-site .identity-core span { font-size:9px; letter-spacing:.15em; }
+.company-site .identity-node { position:absolute; display:flex; flex-direction:column; align-items:center; gap:9px; padding:16px 19px; border:1px solid #a997c666; background:#352e46; color:#e9ddf7; font-size:9px; letter-spacing:.12em; }
+.company-site .identity-node-one { top:15%; left:12%; }.company-site .identity-node-two { top:19%; right:9%; }.company-site .identity-node-three { bottom:18%; right:15%; }
+.company-site .identity-art-caption { position:absolute; bottom:23px; left:25px; right:25px; display:flex; justify-content:space-between; gap:12px; font-size:9px; letter-spacing:.13em; color:#c9b8dd; }
+.company-site .editorial-services { grid-template-columns:repeat(12,minmax(0,1fr)); gap:14px; }
+.company-site .editorial-services .service-card { grid-column:span 5; }
+.company-site .editorial-services .service-card:nth-child(4n+2),.company-site .editorial-services .service-card:nth-child(4n+3) { grid-column:span 7; }
+.company-site .editorial-services .service-card:nth-child(2) { background:#e9e3f1; }
+.company-site .editorial-services .service-card:nth-child(3) { background:#eeeef5; }
+@media(max-width:1000px) { .company-site .identiverse-hero-layout { grid-template-columns:1fr; padding-block:70px; } .company-site .identity-art { min-height:460px; } .company-site .identiverse-hero h1 { font-size:clamp(60px,10vw,95px); } }
+@media(max-width:700px) { .company-site .identiverse-hero-layout { padding-block:58px; gap:40px; } .company-site .identiverse-hero h1 { font-size:clamp(49px,11vw,72px); } .company-site .identiverse-hero .hero-actions { flex-wrap:wrap; gap:24px; } .company-site .hero-proof { margin-top:42px; } .company-site .identity-art { min-height:390px; } .company-site .identity-core { width:150px; } .company-site .identity-node { padding:11px; } .company-site .identity-node-one { left:6%; } .company-site .identity-node-two { right:5%; } .company-site .identity-node-three { right:8%; } .company-site .editorial-services { grid-template-columns:1fr; } .company-site .editorial-services .service-card,.company-site .editorial-services .service-card:nth-child(4n+2),.company-site .editorial-services .service-card:nth-child(4n+3) { grid-column:auto; } }
